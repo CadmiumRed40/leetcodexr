@@ -1,0 +1,18 @@
+/* */
+
+var generateParenthesis = function(n) {
+    let res = [] //creates an empty array that stores valid parentheses
+
+    let iterate = (str, open, close) =>{ //creating  a recusrive function that takes 3 parameters  
+        if(open > n || close >n || close >open) return; // using n, checking to see if the number of open and closing parenthesis exceed the value of n or if closing parentheses exceeds the number of opening parentheses.
+        if(str.length == n *2 && open ==close){ //checking to see if str is equal to n *2 since  each valid parentheses combination has a length of n * 2.
+            res.push(str)//If the above comment is true it pushes str into the res array.
+            return;//return the function
+        }
+        iterate(str +'(',open+1,close) //calls the iterate function with an additional open parentheses
+        iterate(str + ')', open, close+1) //calls the iterate function with an additional close parentheses
+    }
+
+    iterate('',0,0) //calls the iterate function to start the recursive process of generating all possible parentheses.
+    return res; //returns the res array 
+};
